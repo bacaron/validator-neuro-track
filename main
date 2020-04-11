@@ -5,5 +5,10 @@
 
 set -e
 
+# create histogram text file using mrtrix3
+singularity exec -e docker::/brainlife/mrtrix3:3.0_RC3 ./create-histogram.sh
+
+# generate image of histogram and tractogram
+singularity exec -e docker://brainlife/validator-neuro-track:1.0 ./plot-histogram_counts.py
 singularity exec -e docker://brainlife/validator-neuro-track:1.0 ./run.py
 
